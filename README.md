@@ -6,7 +6,7 @@
 
 Проект развивает архитектурную концепцию, начатую в
 [Office-infra](https://github.com/Iso-Hallow/Office-infra).
-Если Office-infra — это прикладной изолированный контур для пользователей
+Если Office-infra - это прикладной изолированный контур для пользователей
 (User Plane), то данный репозиторий реализует **контур управления и
 наблюдаемости (Management & SecOps Plane)**.
 
@@ -47,7 +47,7 @@
 | **IT-Tools** | Набор утилит системного инженера | 80 | `http://tools.<HOMELAB_DOMAIN>` |
 | **CyberChef** | Анализ данных, декодирование, криптография | 8000 | `http://chef.<HOMELAB_DOMAIN>` |
 
-> `<HOMELAB_DOMAIN>` по умолчанию — `lab` (например, `grafana.lab`).
+> `<HOMELAB_DOMAIN>` по умолчанию - `lab` (например, `grafana.lab`).
 > Для работы доменов нужен локальный DNS (Pi-hole, dnsmasq) или записи
 > в `hosts` на клиентских машинах.
 
@@ -101,13 +101,13 @@ Wildcard-сертификат ```*.lab``` выпущен локальным CA (
 CI/CD проверяет утечки секретов (Gitleaks) и уязвимости (Trivy).
 
 При необходимости можно перейти на менеджер секретов (Vaultwarden уже
-в стеке; для CI/CD — GitHub Secrets или HashiCorp Vault).
+в стеке; для CI/CD - GitHub Secrets или HashiCorp Vault).
 
 ---
 
 ## 📚 Документация и регламенты
 
-* [docs/runbooks.md](docs/runbooks.md) — **Инженерная аптечка:** решение проблем рассинхронизации времени (Time Drift в Hyper-V), обхода ограничений Web Crypto API и устранения ошибок 502 в реверс-прокси.
+* [docs/runbooks.md](docs/runbooks.md) - **Инженерная аптечка:** решение проблем рассинхронизации времени (Time Drift в Hyper-V), обхода ограничений Web Crypto API и устранения ошибок 502 в реверс-прокси.
 
 ## 📄 Лицензия
 MIT License
