@@ -1,0 +1,45 @@
+appConfig:
+  theme: colorful
+  layout: auto
+  title: Ops & Security Homelab
+  description: Инженерный центр управления
+pageInfo:
+  title: Homelab Dashboard
+sections:
+  - name: Сервисы управления
+    icon: fas fa-server
+    items:
+      - title: Grafana
+        description: Мониторинг и метрики
+        icon: si-grafana
+        url: http://grafana.lab
+        target: newtab
+      - title: Vaultwarden
+        description: Менеджер паролей
+        icon: si-bitwarden
+        url: http://vault.lab
+        target: newtab
+      - title: DokuWiki
+        description: База знаний
+        icon: fas fa-book
+        url: http://wiki.lab
+        target: newtab
+      - title: Proxy Manager
+        description: Управление шлюзом
+        icon: fas fa-network-wired
+        url: http://192.168.1.111:81
+        target: newtab
+
+  - name: Инструменты инженера
+    icon: fas fa-toolbox
+    items:
+      - title: IT-Tools
+        description: Утилиты разработчика
+        icon: fas fa-tools
+        url: http://tools.lab
+        target: newtab
+      - title: CyberChef
+        description: Анализ данных и криптография
+        icon: fas fa-terminal
+        url: http://chef.lab
+        target: newtab

@@ -1,0 +1,76 @@
+---
+- name: "Развёртывание защищённой платформы Homelab (IaC)"
+  hosts: homelab_nodes
+  become: true
+  vars:
+    timezone: "Europe/Moscow"
+    deploy_dir: "/home/{{ ansible_user }}/homelab"
+    required_packages:
+      - ufw
+      - fail2ban
+      - curl
+      - git
+      - ca-certificates
+      - gnupg
+      - lsb-release
+
+  tasks:
+    # --- 1. СИНХРОНИЗАЦИЯ СИСТЕМНОГО ВРЕМЕНИ (Предотвращение Time Drift) ---
+    - name: Установка часового пояса Europe/Moscow
+      community.general.timezone:
+        name: "{{ timezone }}"
+
+    - name: Включение автоматической синхронизации времени по NTP
+      systemd:
+        name: systemd-timesyncd
+        state: started
+        enabled: yes
+
+    # --- 2. БАЗОВЫЙ ХАРДЕНИНГ И БЕЗОПАСНОСТЬ ХОСТА ---
+    - name: Обновление кэша пакетов и установка базового ПО безопасности
+      apt:
+        name: "{{ required_packages }}"
+        state: present
+        update_cache: yes
+
+    - name: Настройка файрвола UFW (Политика: запретить всё входящее)
+      ufw:
+        default: deny
+        direction: incoming
+
+    - name: Открытие только необходимых портов управления и шлюза
+      ufw:
+        rule: allow
+        port: "{{ item.port }}"
+        proto: "{{ item.proto }}"
+      loop:
+        - { port: '22', proto: 'tcp' }   # SSH управление
+        - { port: '80', proto: 'tcp' }   # HTTP Ingress
+        - { port: '443', proto: 'tcp' }  # HTTPS Ingress
+        - { port: '81', proto: 'tcp' }   # Панель NPM (bootstrap)
+
+    - name: Включение файрвола UFW
+      ufw:
+        state: enabled
+
+    - name: Активация службы Fail2Ban для защиты SSH
+      systemd:
+        name: fail2ban
+        state: started
+        enabled: yes
+
+    # --- 3. РАЗВЁРТЫВАНИЕ СЕРВИСОВ HOMELAB ---
+    - name: Проверка наличия директории проекта
+      file:
+        path: "{{ deploy_dir }}"
+        state: directory
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+        mode: '0755'
+
+    - name: Запуск стека через Docker Compose
+      command: docker compose up -d
+      args:
+        chdir: "{{ deploy_dir }}"
+      register: compose_output
+      changed_when: "'Started' in compose_output.stdout or 'Running' in compose_output.stdout"

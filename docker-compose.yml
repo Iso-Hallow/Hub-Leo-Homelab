@@ -1,0 +1,114 @@
+networks:
+  proxy-net:
+    name: proxy-net
+    driver: bridge
+
+services:
+  # --- ОБРАТНЫЙ ПРОКСИ ---
+  npm:
+    image: jc21/nginx-proxy-manager:latest
+    container_name: npm
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "81:81"
+    environment:
+      - DISABLE_IPV6=true
+    volumes:
+      - ./npm/data:/data
+      - ./npm/letsencrypt:/etc/letsencrypt
+    networks:
+      - proxy-net
+
+  # --- ДАШБОРД ---
+  dashy:
+    image: lissy93/dashy:latest
+    container_name: dashy
+    restart: unless-stopped
+    volumes:
+      - ./dashy/user-data:/app/user-data
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Moscow
+    networks:
+      - proxy-net
+
+  # --- МЕНЕДЖЕР СЕКРЕТОВ ---
+  vaultwarden:
+    image: vaultwarden/server:latest
+    container_name: vaultwarden
+    restart: unless-stopped
+    environment:
+      - WEBSOCKET_ENABLED=true
+    volumes:
+      - ./vaultwarden/data:/data
+    networks:
+      - proxy-net
+
+  # --- ИНСТРУМЕНТЫ ИНЖЕНЕРА ---
+  it-tools:
+    image: corentinth/it-tools:latest
+    container_name: it-tools
+    restart: unless-stopped
+    networks:
+      - proxy-net
+
+  cyberchef:
+    image: mpepping/cyberchef:latest
+    container_name: cyberchef
+    restart: unless-stopped
+    networks:
+      - proxy-net
+
+  # --- БАЗА ЗНАНИЙ ---
+  dokuwiki:
+    image: lscr.io/linuxserver/dokuwiki:latest
+    container_name: dokuwiki
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Moscow
+    volumes:
+      - ./dokuwiki/config:/config
+    restart: unless-stopped
+    networks:
+      - proxy-net
+
+  # --- МОНИТОРИНГ: ЭКСПОРТЕР ---
+  node-exporter:
+    image: prom/node-exporter:latest
+    container_name: node-exporter
+    restart: unless-stopped
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.rootfs=/rootfs'
+      - '--path.sysfs=/host/sys'
+    networks:
+      - proxy-net
+
+  # --- МОНИТОРИНГ: СБОРЩИК ---
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    restart: unless-stopped
+    user: "65534:65534"
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.retention.time=7d'
+    volumes:
+      - ./prometheus/config/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./prometheus/data:/prometheus
+    networks:
+      - proxy-net
+
+  # --- МОНИТОРИНГ: ВИЗУАЛИЗАЦИЯ ---
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    restart: unless-stopped
