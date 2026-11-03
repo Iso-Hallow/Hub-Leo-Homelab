@@ -5,7 +5,7 @@
 
 ## Post-mortems
 
-- [Nextcloud Office: Collabora → ONLYOFFICE](postmortems/2026-XX-nextcloud-office-collabora-to-onlyoffice.md)
+- [Nextcloud Office: Collabora → ONLYOFFICE](postmortems/2026-11-nextcloud-office-collabora-to-onlyoffice.md)
 
 ## Related
 
