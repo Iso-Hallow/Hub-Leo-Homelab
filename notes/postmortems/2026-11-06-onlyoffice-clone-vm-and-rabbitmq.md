@@ -127,6 +127,8 @@ curl -I https://<OFFICE_SUBDOMAIN>.<DOMAIN>
 
 Оба фактора устранены: клон выключен, контейнер пересоздан с чистого образа.
 
+**Доказательство: фрагмент лога повреждённого контейнера.** (Waiting for connection to the localhost host on port 5672 в цикле) и контраст с логом нового контейнера (RabbitMQ Messaging Server [ OK ], 5672 port [tcp/amqp] succeeded!) - в [`2026-11-06-onlyoffice-clone-vm-and-rabbitmq.evidence.md`](./2026-11-06-onlyoffice-clone-vm-and-rabbitmq.evidence.md), разделы A.2 и A.7.
+
 ---
 
 ## 7. What Didn’t Work
