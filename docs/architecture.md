@@ -21,12 +21,12 @@
                         │
      [ Внутренняя bridge-сеть Docker: proxy-net ]
                         │
-   ┌─────────────────┬──┴─────────────┬───────────────┐
-   ▼                 ▼                ▼               ▼
+    ┌────────────────┬──┴─────────────┬───────────────┐
+    ▼                ▼                ▼               ▼
 [ Dashy ]     [ Vaultwarden ]    [ Grafana ]    [ DokuWiki ]
-   │                                  │
+    │                                 │
 [ IT-Tools ]                    [ Prometheus ]
-   │                                  │
+    │                                 │
 [ CyberChef ]                  [ Node Exporter ]
 
 ```
