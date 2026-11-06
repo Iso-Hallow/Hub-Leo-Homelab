@@ -9,6 +9,10 @@
 - [ONLYOFFICE Docs: отказ после переноса ВМ и восстановление контейнера](postmortems/2026-11-06-onlyoffice-clone-vm-and-rabbitmq.md)
 - [Evidence: необработанные журналы и диагностический след](postmortems/2026-11-06-onlyoffice-clone-vm-and-rabbitmq.evidence.md)
 
+## Runbooks
+
+- [Ansible-rebuild](runbooks/ansible-rebuild.md)
+
 ## Related
 
 - [Office-infra](https://github.com/Iso-Hallow/Office-infra) - air-gapped контур,
