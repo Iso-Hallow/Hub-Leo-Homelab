@@ -194,15 +194,17 @@ Websockets Support: enabled
 
 Рабочее решение:
 
-1. Удалить Nextcloud Office, Collabora Online - Built-in CODE Server и связанные остатки.
+1. Удалить Nextcloud Office, Collabora Online — Built-in CODE Server и связанные остатки.
 2. Проверить и удалить старые Docker-контейнеры Collabora, если они были.
-3. Запустить ONLYOFFICE Docs в Docker на внутреннем порту 8888, с зафиксированной версией образа.
+3. Запустить ONLYOFFICE Docs в Docker на внутреннем порту 8888.
 4. Создать отдельный поддомен `<OFFICE_SUBDOMAIN>.<DOMAIN>`.
 5. Настроить Nginx Proxy Manager: `http → <INTERNAL_IP>:8888`, включить Websockets, Let’s Encrypt, Force SSL.
 6. Установить коннектор ONLYOFFICE в Nextcloud.
 7. Указать адрес `https://<OFFICE_SUBDOMAIN>.<DOMAIN>`.
 8. Проверить создание, открытие, копирование-вставку и форматирование `.docx`.
 9. Сделать экспорт/резервную копию ВМ.
+
+> **Примечание.** Все шаги в этом разделе приведены **в том виде, в каком они выполнялись** на момент инцидента. Образ запускался **без тега** (`latest`); версия контейнера неизвестна — он удалён годом позже при другом инциденте (см. [постмортем #2](./2026-11-06-onlyoffice-clone-vm-and-rabbitmq.md), раздел 5 / T7, и [evidence](./2026-11-06-onlyoffice-clone-vm-and-rabbitmq.evidence.md), A.6). Финальная рекомендованная форма (с зафиксированной версией `onlyoffice/documentserver:<version>`) — в постмортеме #2, раздел 8 (Resolution). Причина разделения: хронологически этот инцидент — раньше, и в тот момент правило «фиксировать тег» ещё не было выработано.
 
 ---
 
