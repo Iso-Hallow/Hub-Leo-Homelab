@@ -1,11 +1,11 @@
 # Postmortem: ONLYOFFICE Docs - отказ после переноса ВМ и восстановление контейнера
 
-**Статус:** Resolved
-**Компонент:** ONLYOFFICE Docs (Docker) → Nextcloud (коннектор ONLYOFFICE) → Nginx Proxy Manager
-**Среда:** домашняя лаборатория, Hyper-V, Ubuntu Server 24.04, Nextcloud, Docker, Nginx Proxy Manager
-**Версия ONLYOFFICE Docs (определена постфактум):** 9.1.0, Build 168
-**Характер:** постмортем по реальному инциденту, без поиска виноватых
-**Публикация:** все домены, IP, имена ВМ и учётные записи заменены на плейсхолдеры.
+- **Статус:** Resolved
+- **Компонент:** ONLYOFFICE Docs (Docker) → Nextcloud (коннектор ONLYOFFICE) → Nginx Proxy Manager
+- **Среда:** домашняя лаборатория, Hyper-V, Ubuntu Server 24.04, Nextcloud, Docker, Nginx Proxy Manager
+- **Версия ONLYOFFICE Docs (определена постфактум):** 9.1.0, Build 168
+- **Характер:** постмортем по реальному инциденту, без поиска виноватых
+- **Публикация:** все домены, IP, имена ВМ и учётные записи заменены на плейсхолдеры.
 
 ---
 
