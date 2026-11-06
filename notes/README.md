@@ -1,11 +1,13 @@
 # Engineering Notes
 
-Обезличенные версии внутренних post-mortem.
-Реальные домены, IP и учётные записи заменены на плейсхолдеры.
+Обезличенные версии внутренних post-mortem и runbook.
+Реальные домены, IP, MAC-адреса и учётные записи заменены на плейсхолдеры.
 
 ## Post-mortems
 
 - [Nextcloud Office: Collabora → ONLYOFFICE](postmortems/2026-11-nextcloud-office-collabora-to-onlyoffice.md)
+- [ONLYOFFICE Docs: отказ после переноса ВМ и восстановление контейнера](postmortems/2026-11-06-onlyoffice-clone-vm-and-rabbitmq.md)
+- [Evidence: необработанные журналы и диагностический след](postmortems/2026-11-06-onlyoffice-clone-vm-and-rabbitmq.evidence.md)
 
 ## Related
 
