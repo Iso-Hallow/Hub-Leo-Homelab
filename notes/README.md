@@ -19,3 +19,7 @@
 
 - [Office-infra](https://github.com/Iso-Hallow/Office-infra) - air-gapped контур,
   похожий инцидент с ONLYOFFICE 7.5 (блокировка приватных IP).
+  
+## Assets
+
+Визуальные доказательства (обезличенные): [assets/](assets/)
