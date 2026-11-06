@@ -263,13 +263,15 @@ sudo docker ps -a
 sudo docker stop <collabora_container_name>
 sudo docker rm <collabora_container_name>
 
-# Запуск ONLYOFFICE Docs (версия зафиксирована)
+# Запуск ONLYOFFICE Docs - историческая форма (без тега, как выполнялось тогда)
 sudo docker run -i -t -d -p 8888:80 --restart=always \
-  -e JWT_ENABLED=false onlyoffice/documentserver:<version>
+  -e JWT_ENABLED=false onlyoffice/documentserver
 
 # Проверка, что контейнер работает
 sudo docker ps
 ```
+
+> **Примечание.** В этом разделе команда запуска приведена **в историческом виде** (без тега, как выполнялась на момент инцидента). Финальная рекомендованная форма с зафиксированной версией (`onlyoffice/documentserver:<version>`) - в постмортеме #2, раздел 8 (Resolution). Смешивать историческую и рекомендованную формы в одном разделе нельзя: читатель должен видеть, **что делали тогда**, и отдельно -**что делать сейчас**.
 
 **NPM:**
 
