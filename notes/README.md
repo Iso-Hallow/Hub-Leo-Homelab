@@ -8,6 +8,8 @@
 - [Nextcloud Office: Collabora → ONLYOFFICE](postmortems/2026-11-nextcloud-office-collabora-to-onlyoffice.md)
 - [ONLYOFFICE Docs: отказ после переноса ВМ и восстановление контейнера](postmortems/2026-11-06-onlyoffice-clone-vm-and-rabbitmq.md)
 - [Evidence: необработанные журналы и диагностический след](postmortems/2026-11-06-onlyoffice-clone-vm-and-rabbitmq.evidence.md)
+- [ONLYOFFICE: включение JWT (hardening)](postmortems/2026-11-06-onlyoffice-jwt-enablement.md)
+- [ONLYOFFICE: мониторинг в Uptime Kuma](postmortems/2026-11-06-onlyoffice-uptime-kuma.md)
 
 ## Runbooks
 
